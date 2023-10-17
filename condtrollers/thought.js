@@ -13,7 +13,7 @@ const thought = {
       }
     },
     //one thought
-    async getSingleThought(req, res) {
+    async getOneThought(req, res) {
       try {
         const dbThoughtData = await Thought.findOne({ _id: req.params.thoughtId });
         if (!dbThoughtData) {
@@ -26,7 +26,7 @@ const thought = {
       }
     },
     // create one thought
-    async createThought(req, res) {
+    async createOneThought(req, res) {
       try {
         const dbThoughtData = await Thought.create(req.body);
         const dbUserData = await User.findOneAndUpdate(
@@ -44,7 +44,7 @@ const thought = {
       }
     },
     // update thought
-    async updateThought(req, res) {
+    async updateOneThought(req, res) {
       const dbThoughtData = await Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body }, { runValidators: true, new: true });
       if (!dbThoughtData) {
         return res.status(404).json({ message: 'No thought with this id!' });
@@ -54,7 +54,8 @@ const thought = {
       res.status(500).json(err);
     },
     // delete thought
-    async deleteThought(req, res) {
+    // route for deleting thoughts, also affecting user data
+    async deleteOneThought(req, res) {
       try {
         const dbThoughtData = await Thought.findOneAndRemove({ _id: req.params.thoughtId })
         if (!dbThoughtData) {

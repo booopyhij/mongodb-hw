@@ -1,3 +1,4 @@
+// boiler plate mongo db connection
 require("dotenv").config();
 const mongoose = require("mongoose");
 
