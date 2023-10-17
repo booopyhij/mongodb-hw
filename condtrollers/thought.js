@@ -54,6 +54,7 @@ const thought = {
       res.status(500).json(err);
     },
     // delete thought
+    // route for deleting thoughts, also affecting user data
     async deleteThought(req, res) {
       try {
         const dbThoughtData = await Thought.findOneAndRemove({ _id: req.params.thoughtId })

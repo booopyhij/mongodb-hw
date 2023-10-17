@@ -1,7 +1,7 @@
 const { User, Thought } = require('../models');
 const userController = {
   // get every users
-  async getUsers(req, res) {
+  async getAllUsers(req, res) {
     try {
       const dbUserData = await User.find()
       // indicates that fields can be null
@@ -13,7 +13,7 @@ const userController = {
     }
   },
   // get one user by user id
-  async getSingleUser(req, res) {
+  async getOneUser(req, res) {
     try {
       const dbUserData = await User.findOne({ _id: req.params.userId })
         .select('-__v')
@@ -29,7 +29,7 @@ const userController = {
     }
   },
   // create a new user
-  async createUser(req, res) {
+  async createNewUser(req, res) {
     try {
       const dbUserData = await User.create(req.body);
       res.json(dbUserData);
@@ -39,7 +39,7 @@ const userController = {
     }
   },
   // finding one user and update that user
-  async updateUser(req, res) {
+  async updateOneUser(req, res) {
     try {
       const dbUserData = await User.findOneAndUpdate(
         { _id: req.params.userId },
@@ -61,7 +61,7 @@ const userController = {
     }
   },
   // delete user and delete associated thoughts 
-  async deleteUser(req, res) {
+  async deleteOneUser(req, res) {
     try {
       const dbUserData = await User.findOneAndDelete({ _id: req.params.userId })
       if (!dbUserData) {
